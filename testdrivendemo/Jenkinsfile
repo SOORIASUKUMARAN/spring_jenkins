@@ -12,7 +12,7 @@ pipeline {
 
                     // Check if directory exists before removing it 
 
-                    if (fileExists('spring_jenkins')) { 
+                    if (fileExists('spring_enkins')) { 
 
                         bat "rmdir /s /q spring_jenkins" 
 
