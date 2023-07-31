@@ -1,0 +1,83 @@
+pipeline { 
+
+    agent any 
+
+    stages { 
+
+        stage('git repo & clean') { 
+
+            steps { 
+
+                script { 
+
+                    // Check if directory exists before removing it 
+
+                    if (fileExists('testdrivendemo')) { 
+
+                        bat "rmdir /s /q testdrivendemo" 
+
+                    } 
+
+                     
+
+                    bat "git clone https://github.com/SOORIASUKUMARAN/spring_jenkins.git" 
+
+                    bat "mvn clean -f testdrivendemo" 
+
+                } 
+
+            } 
+
+        } 
+
+        stage('install') { 
+
+            steps { 
+
+                bat "mvn install -f testdrivendemo" 
+
+            } 
+
+        } 
+
+        stage('test') { 
+
+            steps { 
+
+                bat "mvn test -f testdrivendemo" 
+
+            } 
+
+        } 
+
+        stage('package') { 
+
+            steps { 
+
+                bat "mvn package -f testdrivendemo" 
+
+            } 
+
+        } 
+
+    } 
+
+} 
+
+ 
+
+def fileExists(String path) { 
+
+    try { 
+
+        fileExists = new File(path).isDirectory() 
+
+    } catch (Exception e) { 
+
+        fileExists = false 
+
+    } 
+
+    return fileExists 
+
+} 
