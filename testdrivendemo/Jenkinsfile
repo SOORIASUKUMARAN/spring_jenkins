@@ -12,9 +12,9 @@ pipeline {
 
                     // Check if directory exists before removing it 
 
-                    if (fileExists('testdrivendemo')) { 
+                    if (fileExists('spring_jenkins')) { 
 
-                        bat "rmdir /s /q testdrivendemo" 
+                        bat "rmdir /s /q spring_jenkins" 
 
                     } 
 
@@ -22,7 +22,7 @@ pipeline {
 
                     bat "git clone https://github.com/SOORIASUKUMARAN/spring_jenkins.git" 
 
-                    bat "mvn clean -f testdrivendemo" 
+                    bat "mvn clean -f spring_jenkins" 
 
                 } 
 
@@ -34,7 +34,7 @@ pipeline {
 
             steps { 
 
-                bat "mvn install -f testdrivendemo" 
+                bat "mvn install -f spring_jenkins" 
 
             } 
 
@@ -44,7 +44,7 @@ pipeline {
 
             steps { 
 
-                bat "mvn test -f testdrivendemo" 
+                bat "mvn test -f spring_jenkins" 
 
             } 
 
@@ -54,7 +54,7 @@ pipeline {
 
             steps { 
 
-                bat "mvn package -f testdrivendemo" 
+                bat "mvn package -f spring_jenkins" 
 
             } 
 
